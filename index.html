@@ -1,99 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard ABREMA - Resíduos Sólidos no Brasil</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    :root { --bg:#0b1220; --card:#121c30; --text:#e8eefc; --muted:#9bb0d3; --accent:#3ea6ff; --good:#22c55e; --warn:#f59e0b; --bad:#ef4444; }
-    *{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,sans-serif}
-    body{margin:0;background:linear-gradient(180deg,#0a1020,#0f1a2f);color:var(--text)}
-    .wrap{max-width:1200px;margin:0 auto;padding:24px}
-    h1{margin:0 0 8px;font-size:1.8rem}
-    p{color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
-    .card{background:var(--card);border:1px solid #203052;border-radius:14px;padding:16px}
-    .kpi{font-size:1.8rem;font-weight:700;margin-top:8px}
-    .charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
-    canvas{background:#0d1628;border-radius:10px;padding:10px}
-    .foot{margin-top:20px;font-size:.9rem;color:var(--muted)}
-    ul{line-height:1.5}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <h1>Dashboard — Setor de Resíduos Sólidos no Brasil</h1>
-    <p>Indicadores compilados de publicações da ABREMA (Panorama 2024/2025 e notícias setoriais).</p>
-
-    <div class="grid">
-      <div class="card"><div>Resíduos gerados (2024)</div><div class="kpi">81,6 mi t</div></div>
-      <div class="card"><div>Coleta em 2023</div><div class="kpi">93,4%</div></div>
-      <div class="card"><div>Reciclagem total estimada</div><div class="kpi">8%</div></div>
-      <div class="card"><div>Reciclagem bioenergética (biometano)</div><div class="kpi">3,2%</div></div>
-      <div class="card"><div>Geração per capita (2024)</div><div class="kpi">1,241 kg/dia</div></div>
-      <div class="card"><div>Prazo legal de encerramento de lixões</div><div class="kpi">2024</div></div>
-    </div>
-
-    <div class="charts">
-      <div class="card"><canvas id="destinacao"></canvas></div>
-      <div class="card"><canvas id="percapita"></canvas></div>
-      <div class="card"><canvas id="aproveitamento"></canvas></div>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <h3>Leituras rápidas</h3>
-      <ul>
-        <li>O volume de resíduos urbanos segue em crescimento e já supera 81 milhões de toneladas/ano.</li>
-        <li>A coleta está alta, mas ainda há lacunas de destinação ambientalmente adequada em parte dos municípios.</li>
-        <li>A taxa de reciclagem (material + bioenergética) ainda é baixa para o potencial econômico do setor.</li>
-        <li>O setor tem oportunidade de expansão em CDR, biogás, biometano e compostagem.</li>
-      </ul>
-    </div>
-
-    <div class="foot">Fonte-base: ABREMA (abrema.org.br) — publicações de 2024, 2025 e 2026. Atualize os números quando novas edições do Panorama forem lançadas.</div>
-  </div>
-
-  <script>
-    new Chart(document.getElementById('destinacao'), {
-      type: 'doughnut',
-      data: {
-        labels: ['Coletado (2023)', 'Não coletado (2023)'],
-        datasets: [{ data: [93.4, 6.6], backgroundColor: ['#3ea6ff','#ef4444'] }]
-      },
-      options: { plugins: { title: { display: true, text: 'Cobertura de coleta de RSU (%)' }, legend:{labels:{color:'#e8eefc'}} } }
-    });
-
-    new Chart(document.getElementById('percapita'), {
-      type: 'line',
-      data: {
-        labels: ['2022', '2023', '2024'],
-        datasets: [{
-          label: 'kg por habitante/dia',
-          data: [1.04, 1.05, 1.241],
-          borderColor: '#22c55e',
-          backgroundColor: '#22c55e55',
-          tension: 0.3,
-          fill: true
-        }]
-      },
-      options: {
-        plugins: { title: { display: true, text: 'Geração per capita diária (estimativa)' }, legend:{labels:{color:'#e8eefc'}} },
-        scales: { y: { ticks:{color:'#e8eefc'} }, x: { ticks:{color:'#e8eefc'} } }
-      }
-    });
-
-    new Chart(document.getElementById('aproveitamento'), {
-      type: 'bar',
-      data: {
-        labels: ['Reciclagem material', 'Biometano (2024)', 'Potencial não aproveitado'],
-        datasets: [{ data: [4.8, 3.2, 92], backgroundColor: ['#3b82f6','#22c55e','#f59e0b'] }]
-      },
-      options: {
-        plugins: { title: { display: true, text: 'Aproveitamento estimado dos resíduos (%)' }, legend: { display:false } },
-        scales: { y: { ticks:{color:'#e8eefc'} }, x: { ticks:{color:'#e8eefc'} } }
-      }
-    });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ABREMA Intelligence Dashboard</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
